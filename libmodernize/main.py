@@ -65,7 +65,8 @@ def main(args=None):
         if not args:
             return 0
     if not args:
-        print("At least one file or directory argument required.", file=sys.stderr)
+        print("At least one file or directory argument required.",
+              file=sys.stderr)
         print("Use --help to show usage.", file=sys.stderr)
         return 2
     if "-" in args:
@@ -119,8 +120,8 @@ def main(args=None):
                             options.processes)
             except refactor.MultiprocessingUnsupported:
                 assert options.processes > 1
-                print("Sorry, -j isn't " \
-                    "supported on this platform.", file=sys.stderr)
+                print("Sorry, -j isn't "
+                      "supported on this platform.", file=sys.stderr)
                 return 1
         rt.summarize()
 

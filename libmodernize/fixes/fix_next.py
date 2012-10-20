@@ -13,7 +13,7 @@ class FixNext(fixer_base.BaseFix):
     power< base=any+ trailer< '.' attr='next' > trailer< '(' ')' > >
     """
 
-    order = "pre" # Pre-order tree traversal
+    order = "pre"  # Pre-order tree traversal
 
     def transform(self, node, results):
         assert results
@@ -23,4 +23,5 @@ class FixNext(fixer_base.BaseFix):
         touch_import(None, u'six', node)
         base = [n.clone() for n in base]
         base[0].prefix = u""
-        node.replace(Call(Name(u"six.advance_iterator", prefix=node.prefix), base))
+        node.replace(
+            Call(Name(u"six.advance_iterator", prefix=node.prefix), base))

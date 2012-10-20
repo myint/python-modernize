@@ -13,7 +13,7 @@ class FixDict(fixer_base.BaseFix):
     power< base=any+ trailer< '.' method=('iterkeys'|'iteritems'|'itervalues') > trailer< '(' ')' > >
     """
 
-    order = "pre" # Pre-order tree traversal
+    order = "pre"  # Pre-order tree traversal
 
     def transform(self, node, results):
         assert results
@@ -24,4 +24,5 @@ class FixDict(fixer_base.BaseFix):
         touch_import(None, u'six', node)
         base = [n.clone() for n in base]
         base[0].prefix = u""
-        node.replace(Call(Name(u"six.%s" % method.value, prefix=node.prefix), base))
+        node.replace(
+            Call(Name(u"six.%s" % method.value, prefix=node.prefix), base))
