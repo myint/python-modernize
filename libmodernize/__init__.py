@@ -47,6 +47,10 @@ def add_future(node, symbol):
             # skip over docstring
             continue
         names = check_future_import(node)
+
+        if symbol in str(node):
+            return
+
         if not names:
             # not a future statement; need to insert before this
             break
