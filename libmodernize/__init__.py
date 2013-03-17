@@ -45,8 +45,9 @@ def add_future(node, symbol):
     root = find_root(node)
 
     for idx, node in enumerate(root.children):
-        if node.type == syms.simple_stmt and \
-                len(node.children) > 0 and node.children[0].type == token.STRING:
+        if (node.type == syms.simple_stmt and
+                len(node.children) > 0 and
+                node.children[0].type == token.STRING):
             # skip over docstring
             continue
         names = check_future_import(node)

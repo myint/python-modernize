@@ -41,7 +41,8 @@ def main(args=None):
                       help="Leave u'' and b'' prefixes unchanged (requires "
                            "Python 3.3 and higher).")
     parser.add_option("--future-unicode", action="store_true", default=False,
-                      help="Use unicode_strings future_feature instead of the six.u function "
+                      help="Use unicode_strings future_feature instead of the "
+                           "six.u function "
                       "(only useful for Python 2.6+).")
     parser.add_option("--no-six", action="store_true", default=False,
                       help="Exclude fixes that depend on the six package")
@@ -55,7 +56,8 @@ def main(args=None):
     flags = {}
     options, args = parser.parse_args(args)
     if not options.write and options.no_diffs:
-        warn("not writing files and not printing diffs; that's not very useful")
+        warn(
+            "not writing files and not printing diffs; that's not very useful")
     if not options.write and options.nobackups:
         parser.error("Can't use -n without -w")
     if options.list_fixes:

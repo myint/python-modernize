@@ -3,6 +3,7 @@ from libmodernize import add_future
 
 
 class FixUnicodeFuture(fix_unicode.FixUnicode):
+
     def transform(self, node, results):
         res = super(FixUnicodeFuture, self).transform(node, results)
         if res:
