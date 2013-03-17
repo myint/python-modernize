@@ -1,0 +1,8 @@
+*.pyc
+.*.swp
+*.bak
+__pycache__/
+build/
+develop/
+dist/
+*.egg-info/
