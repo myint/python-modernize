@@ -44,8 +44,8 @@ def main(args=None):
                       help="Use unicode_strings future_feature instead of the "
                            "six.u function "
                       "(only useful for Python 2.6+).")
-    parser.add_option("--no-six", action="store_true", default=False,
-                      help="Exclude fixes that depend on the six package")
+    parser.add_option("--six", action="store_true", default=False,
+                      help="Include fixes that depend on the six package")
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -95,7 +95,7 @@ def main(args=None):
     else:
         unwanted_fixes.add('libmodernize.fixes.fix_unicode_future')
 
-    if options.no_six:
+    if not options.six:
         unwanted_fixes.update(six_fix_names)
     explicit = set()
     if options.fix:
