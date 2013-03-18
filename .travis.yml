@@ -8,4 +8,5 @@ install:
     - python setup.py --quiet install
 
 script:
-    - python-modernize .
+    - python-modernize example.py
+    - python-modernize --doctests-only example.py

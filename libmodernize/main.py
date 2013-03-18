@@ -17,8 +17,8 @@ def main(args=None):
     """
     # Set up option parser
     parser = optparse.OptionParser(usage="modernize [options] file|dir ...")
-    parser.add_option("-d", "--doctests_only", action="store_true",
-                      help="Fix up doctests only")
+    parser.add_option("-d", "--doctests-only", "--doctests_only",
+                      action="store_true", help="Fix up doctests only")
     parser.add_option("-f", "--fix", action="append", default=[],
                       help="Each FIX specifies a transformation; default: all")
     parser.add_option("-j", "--processes", action="store", default=1,
@@ -94,6 +94,9 @@ def main(args=None):
         unwanted_fixes.add('libmodernize.fixes.fix_unicode')
     else:
         unwanted_fixes.add('libmodernize.fixes.fix_unicode_future')
+
+    if options.doctests_only:
+        unwanted_fixes.add('libmodernize.fixes.fix_print')
 
     if not options.six:
         unwanted_fixes.update(six_fix_names)
