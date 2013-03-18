@@ -1,6 +1,6 @@
 #!/usr/bin/env cram --indent=4
 
-Basic test::
+Test a minimal example
 
     $ cat > example.py <<EOF
     > print 'blah', 'blah'
@@ -22,7 +22,7 @@ Basic test::
     x = {'abc': 123}
     print((x.has_key()))
 
-Doctest::
+Test doctest
 
     $ cat > example.py <<EOF
     > """
@@ -40,10 +40,11 @@ Doctest::
     RefactoringTool: Files that were modified:
     RefactoringTool: example.py
 
-    $ cat example.py
+Ignore trailing whitespace caused by python-modernize
+
+    $ cat example.py | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
     """
     >>> x = {'abc': 123}
     >>> 'abc' in x
     True
     """
-    
