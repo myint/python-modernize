@@ -1,0 +1,52 @@
+Basic test::
+
+    $ cat > example.py <<EOF
+    > print 'blah', 'blah'
+    > x = {'abc': 123}
+    > print(x.has_key())
+    > EOF
+
+    $ python-modernize example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: Refactored example.py
+    RefactoringTool: Files that need to be modified:
+    RefactoringTool: example.py
+    --- example.py\t(original) (esc)
+    +++ example.py\t(refactored) (esc)
+    @@ -1,3 +1,4 @@
+    -print 'blah', 'blah'
+    +from __future__ import print_function
+    +print('blah', 'blah')
+     x = {'abc': 123}
+    -print(x.has_key())
+    +print((x.has_key()))
+
+Doctest::
+
+    $ cat > example.py <<EOF
+    > """
+    > >>> x = {'abc': 123}
+    > >>> x.has_key('abc')
+    > True
+    > """
+    > EOF
+
+    $ python-modernize --doctests-only example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: Refactored example.py
+    RefactoringTool: Files that need to be modified:
+    RefactoringTool: example.py
+    --- example.py\t(original) (esc)
+    +++ example.py\t(refactored) (esc)
+    @@ -1,6 +1,6 @@
+     """
+     >>> x = {'abc': 123}
+    ->>> x.has_key('abc')
+    +>>> 'abc' in x
+     True
+     """
+     

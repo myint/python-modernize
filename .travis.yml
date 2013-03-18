@@ -5,8 +5,8 @@ python:
     - "3.3"
 
 install:
+    - pip install --quiet git+https://github.com/myint/cram
     - python setup.py --quiet install
 
 script:
-    - python-modernize example.py
-    - python-modernize --doctests-only example.py
+    - cram --indent=4 test.cram

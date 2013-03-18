@@ -3,7 +3,7 @@
 import os
 from setuptools import setup
 
-readme = open(os.path.join(os.path.dirname(__file__), 'README'), 'r').read()
+readme = open(os.path.join(os.path.dirname(__file__), 'README.rst'), 'r').read()
 
 setup(
     name='modernize',

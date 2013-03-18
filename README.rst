@@ -32,16 +32,4 @@ Installation
 ------------
 From pip::
 
-    $ pip install --upgrade https://github.com/myint/python-modernize
-
-Example
--------
-::
-
-    $ cat > example.py << EOF
-    > print 'blah', 'blah'
-    > x = {'abc': 123}
-    > print(x.has_key())
-    EOF
-
-    $ python-modernize example.py
+    $ pip install --upgrade git+https://github.com/myint/python-modernize
