@@ -14,6 +14,7 @@ def main(args=None):
     """Main program.
 
     Returns a suggested exit status (0, 1, 2).
+
     """
     # Set up option parser
     parser = optparse.OptionParser(usage="modernize [options] file|dir ...")
