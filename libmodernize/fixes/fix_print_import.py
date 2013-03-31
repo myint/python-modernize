@@ -10,6 +10,8 @@ from lib2to3.pgen2 import token
 from lib2to3.fixer_util import Name
 from lib2to3.fixer_util import FromImport, Newline
 
+from libmodernize import check_future_import
+
 
 class FixPrintImport(fixer_base.BaseFix):
 
@@ -43,6 +45,11 @@ class FixPrintImport(fixer_base.BaseFix):
         return self.new_future_import(node)
 
     def finish_tree(self, tree, filename):
+        for node in tree.children:
+            if 'print_function' in check_future_import(node):
+                # already imported
+                return
+
         if self.found_future_import:
             return
         if not isinstance(tree, pytree.Node):
