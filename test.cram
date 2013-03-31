@@ -67,3 +67,22 @@ Test print with shebang.
     
     from __future__ import print_function
     print('blah', 'blah')
+
+Test existing future print import.
+
+    $ cat > example.py <<EOF
+    > #!/usr/bin/env python
+    > from __future__ import print_function
+    > print('blah', 'blah')
+    > EOF
+
+    $ python-modernize --write --no-diffs example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: No files need to be modified.
+
+    $ cat example.py
+    #!/usr/bin/env python
+    from __future__ import print_function
+    print('blah', 'blah')
