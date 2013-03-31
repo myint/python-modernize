@@ -4,7 +4,7 @@
 from lib2to3 import fixer_base
 from lib2to3.fixer_util import touch_import, Name, Call
 
-bind_warning = "Calls to builtin next() possibly shadowed by global binding"
+bind_warning = 'Calls to builtin next() possibly shadowed by global binding'
 
 
 class FixDict(fixer_base.BaseFix):
@@ -13,7 +13,7 @@ class FixDict(fixer_base.BaseFix):
     power< base=any+ trailer< '.' method=('iterkeys'|'iteritems'|'itervalues') > trailer< '(' ')' > >
     """
 
-    order = "pre"  # Pre-order tree traversal
+    order = 'pre'  # Pre-order tree traversal
 
     def transform(self, node, results):
         assert results
@@ -23,6 +23,6 @@ class FixDict(fixer_base.BaseFix):
         method = results['method'][0]
         touch_import(None, 'six', node)
         base = [n.clone() for n in base]
-        base[0].prefix = ""
+        base[0].prefix = ''
         node.replace(
-            Call(Name("six.%s" % method.value, prefix=node.prefix), base))
+            Call(Name('six.%s' % method.value, prefix=node.prefix), base))

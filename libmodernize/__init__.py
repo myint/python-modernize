@@ -37,7 +37,7 @@ def check_future_import(node):
     elif node.type == token.NAME:
         return set([node.value])
     else:
-        assert 0, "strange import"
+        assert 0, 'strange import'
 
 
 def add_future(node, symbol):
@@ -58,6 +58,6 @@ def add_future(node, symbol):
             # already imported
             return
 
-    import_ = FromImport('__future__', [Leaf(token.NAME, symbol, prefix=" ")])
+    import_ = FromImport('__future__', [Leaf(token.NAME, symbol, prefix=' ')])
     children = [import_, Newline()]
     root.insert_child(idx, Node(syms.simple_stmt, children))

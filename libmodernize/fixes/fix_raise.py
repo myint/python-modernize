@@ -35,9 +35,9 @@ class FixRaise(fixer_base.BaseFix):
     def transform(self, node, results):
         syms = self.syms
 
-        exc = results["exc"].clone()
+        exc = results['exc'].clone()
         if exc.type == token.STRING:
-            msg = "Python 3 does not support string exceptions"
+            msg = 'Python 3 does not support string exceptions'
             self.cannot_convert(node, msg)
             return
 
@@ -52,21 +52,21 @@ class FixRaise(fixer_base.BaseFix):
                 # exc.children[1:-1] is the unparenthesized tuple
                 # exc.children[1].children[0] is the first element of the tuple
                 exc = exc.children[1].children[0].clone()
-            exc.prefix = " "
+            exc.prefix = ' '
 
-        if "val" not in results:
+        if 'val' not in results:
             # One-argument raise
-            new = pytree.Node(syms.raise_stmt, [Name("raise"), exc])
+            new = pytree.Node(syms.raise_stmt, [Name('raise'), exc])
             new.prefix = node.prefix
             return new
 
-        val = results["val"].clone()
+        val = results['val'].clone()
         if is_tuple(val):
             args = [c.clone() for c in val.children[1:-1]]
         else:
-            val.prefix = ""
+            val.prefix = ''
             args = [val]
 
         return pytree.Node(syms.raise_stmt,
-                           [Name("raise"), Call(exc, args)],
+                           [Name('raise'), Call(exc, args)],
                            prefix=node.prefix)

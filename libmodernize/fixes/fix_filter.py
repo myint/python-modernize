@@ -8,7 +8,7 @@ from lib2to3.fixer_util import touch_import
 class FixFilter(fixer_base.BaseFix):
 
     BM_compatible = True
-    order = "pre"
+    order = 'pre'
 
     PATTERN = """
     power< 'filter'
