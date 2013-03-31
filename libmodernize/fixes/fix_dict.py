@@ -21,7 +21,7 @@ class FixDict(fixer_base.BaseFix):
         if not base:
             return
         method = results['method'][0]
-        touch_import(None, u'six', node)
+        touch_import(None, 'six', node)
         base = [n.clone() for n in base]
         base[0].prefix = ""
         node.replace(

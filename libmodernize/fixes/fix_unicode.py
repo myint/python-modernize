@@ -18,12 +18,12 @@ class FixUnicode(fixer_base.BaseFix):
 
     def transform(self, node, results):
         if 'name' in results:
-            touch_import(None, u'six', node)
+            touch_import(None, 'six', node)
             name = results['name']
-            name.replace(Name(u'six.text_type', prefix=name.prefix))
+            name.replace(Name('six.text_type', prefix=name.prefix))
         elif node.type == token.STRING and _literal_re.match(node.value):
-            touch_import(None, u'six', node)
+            touch_import(None, 'six', node)
             new = node.clone()
             new.value = new.value[1:]
             new.prefix = ''
-            node.replace(Call(Name(u'six.u', prefix=node.prefix), [new]))
+            node.replace(Call(Name('six.', prefix=node.prefix), [new]))

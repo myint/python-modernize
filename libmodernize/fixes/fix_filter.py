@@ -25,4 +25,4 @@ class FixFilter(fixer_base.BaseFix):
     """
 
     def transform(self, node, results):
-        touch_import(u'six.moves', u'filter', node)
+        touch_import('six.moves', 'filter', node)

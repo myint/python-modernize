@@ -25,4 +25,4 @@ class FixMap(fixer_base.BaseFix):
     """
 
     def transform(self, node, results):
-        touch_import(u'six.moves', u'map', node)
+        touch_import('six.moves', 'map', node)
