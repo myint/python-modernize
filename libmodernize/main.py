@@ -98,6 +98,7 @@ def main(args=None):
 
     if options.doctests_only:
         unwanted_fixes.add('libmodernize.fixes.fix_print')
+        unwanted_fixes.add('libmodernize.fixes.fix_print_import')
 
     if not options.six:
         unwanted_fixes.update(six_fix_names)

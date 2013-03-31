@@ -1,6 +1,6 @@
 #!/usr/bin/env cram --indent=4
 
-Test a minimal example
+Test a minimal example.
 
     $ cat > example.py <<EOF
     > print 'blah', 'blah'
@@ -22,7 +22,7 @@ Test a minimal example
     x = {'abc': 123}
     print((x.has_key()))
 
-Test doctest
+Test doctest. Ignore trailing whitespace caused by python-modernize.
 
     $ cat > example.py <<EOF
     > """
@@ -40,11 +40,30 @@ Test doctest
     RefactoringTool: Files that were modified:
     RefactoringTool: example.py
 
-Ignore trailing whitespace caused by python-modernize
-
     $ cat example.py | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
     """
     >>> x = {'abc': 123}
     >>> 'abc' in x
     True
     """
+
+Test print with shebang.
+
+    $ cat > example.py <<EOF
+    > #!/usr/bin/env python
+    > print 'blah', 'blah'
+    > EOF
+
+    $ python-modernize --write --no-diffs example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: Refactored example.py
+    RefactoringTool: Files that were modified:
+    RefactoringTool: example.py
+
+    $ cat example.py
+    #!/usr/bin/env python
+    
+    from __future__ import print_function
+    print('blah', 'blah')
