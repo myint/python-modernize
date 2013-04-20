@@ -6,3 +6,5 @@ build/
 develop/
 dist/
 *.egg-info/
+MANIFEST
+.tox/
