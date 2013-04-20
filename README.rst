@@ -19,9 +19,9 @@ dependency on `six`.
 
 Unicode Literal Control:
 
-- By default modernize will wrap literals with the six helpers.
-  This is useful if you want to support Python 3.1 and Python 3.2
-  without bigger changes.
+- By default modernize will leave literals alone.
+- ``--six`` will wrap literals with the six helpers. This is useful if you
+  want to support Python 3.1 and Python 3.2 without bigger changes.
 - Alternatively there is the ``--compat-unicode`` flag which
   does not change unicode literals at all which means that you
   can take advantage of PEP 414.
