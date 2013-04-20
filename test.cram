@@ -86,3 +86,22 @@ Test existing future print import.
     #!/usr/bin/env python
     from __future__ import print_function
     print('blah', 'blah')
+
+Test with no print.
+
+    $ cat > example.py <<EOF
+    > x = {'abc': 123}
+    > x.has_key('abc')
+    > EOF
+
+    $ python-modernize --write --no-diffs example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: Refactored example.py
+    RefactoringTool: Files that were modified:
+    RefactoringTool: example.py
+
+    $ cat example.py
+    x = {'abc': 123}
+    'abc' in x
