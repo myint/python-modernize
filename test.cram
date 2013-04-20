@@ -52,6 +52,7 @@ Test print with shebang.
     $ cat > example.py <<EOF
     > #!/usr/bin/env python
     > print 'blah', 'blah'
+    > print 123
     > EOF
 
     $ python-modernize --write --no-diffs example.py
@@ -67,6 +68,7 @@ Test print with shebang.
     
     from __future__ import print_function
     print('blah', 'blah')
+    print(123)
 
 Test existing future print import.
 

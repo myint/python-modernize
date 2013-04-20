@@ -43,7 +43,6 @@ class FixPrint(fixer_base.BaseFix):
         return new
 
     def transform(self, node, results):
-        self.found_print = True
         assert results
 
         bare_print = results.get('bare')
@@ -81,6 +80,8 @@ class FixPrint(fixer_base.BaseFix):
                 self.add_kwarg(l_args, 'file', file)
         n_stmt = Call(Name('print'), l_args)
         n_stmt.prefix = node.prefix
+
+        self.found_print = True
         return n_stmt
 
     def add_kwarg(self, l_nodes, s_kwd, n_expr):
