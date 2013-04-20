@@ -15,11 +15,7 @@ with open(os.path.join(os.path.dirname(__file__),
         description='A hack on top of 2to3 for modernizing code for '
                     'hybrid codebases.',
         long_description=readme.read(),
-        entry_points={
-            'console_scripts': [
-                'python-modernize = libmodernize.main:main'
-            ]
-        },
+        scripts=['python-modernize'],
         zip_safe=False,
         classifiers=[
             'License :: OSI Approved :: BSD License',

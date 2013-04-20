@@ -8,7 +8,7 @@ Test a minimal example.
     > print(x.has_key())
     > EOF
 
-    $ python-modernize --write --no-diffs example.py
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
     RefactoringTool: Skipping implicit fixer: idioms
     RefactoringTool: Skipping implicit fixer: set_literal
     RefactoringTool: Skipping implicit fixer: ws_comma
@@ -32,7 +32,7 @@ Test doctest. Ignore trailing whitespace caused by python-modernize.
     > """
     > EOF
 
-    $ python-modernize --write --no-diffs --doctests-only example.py
+    $ $TESTDIR/python-modernize --write --no-diffs --doctests-only example.py
     RefactoringTool: Skipping implicit fixer: idioms
     RefactoringTool: Skipping implicit fixer: set_literal
     RefactoringTool: Skipping implicit fixer: ws_comma
@@ -55,7 +55,7 @@ Test print with shebang.
     > print 123
     > EOF
 
-    $ python-modernize --write --no-diffs example.py
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
     RefactoringTool: Skipping implicit fixer: idioms
     RefactoringTool: Skipping implicit fixer: set_literal
     RefactoringTool: Skipping implicit fixer: ws_comma
@@ -78,7 +78,7 @@ Test existing future print import.
     > print('blah', 'blah')
     > EOF
 
-    $ python-modernize --write --no-diffs example.py
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
     RefactoringTool: Skipping implicit fixer: idioms
     RefactoringTool: Skipping implicit fixer: set_literal
     RefactoringTool: Skipping implicit fixer: ws_comma
@@ -96,7 +96,7 @@ Test with no print.
     > x.has_key('abc')
     > EOF
 
-    $ python-modernize --write --no-diffs example.py
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
     RefactoringTool: Skipping implicit fixer: idioms
     RefactoringTool: Skipping implicit fixer: set_literal
     RefactoringTool: Skipping implicit fixer: ws_comma
