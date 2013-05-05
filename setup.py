@@ -1,6 +1,15 @@
 #!/usr/bin/env python
 
+import ast
 from distutils import core
+
+
+def version():
+    """Return version string."""
+    with open('libmodernize/__init__.py') as input_file:
+        for line in input_file:
+            if line.startswith('__version__'):
+                return ast.parse(line).body[0].value.s
 
 
 with open('README.rst') as readme:

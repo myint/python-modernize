@@ -8,6 +8,7 @@ from lib2to3.main import warn, StdoutRefactoringTool
 from lib2to3 import refactor
 
 from libmodernize.fixes import lib2to3_fix_names, six_fix_names
+from libmodernize import __version__
 
 
 def main(args=None):
@@ -17,7 +18,8 @@ def main(args=None):
 
     """
     # Set up option parser
-    parser = optparse.OptionParser(usage='modernize [options] file|dir ...')
+    parser = optparse.OptionParser(usage='modernize [options] file|dir ...',
+                                   version='%prog {0}'.format(__version__))
     parser.add_option('-d', '--doctests-only', '--doctests_only',
                       action='store_true', help='Fix up doctests only')
     parser.add_option('-f', '--fix', action='append', default=[],
