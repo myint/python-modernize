@@ -8,7 +8,7 @@ with open('README.rst') as readme:
         name='modernize',
         author='Armin Ronacher',
         author_email='armin.ronacher@active-4.com',
-        version='0.2.1',
+        version='0.3',
         url='http://github.com/mitsuhiko/python-modernize',
         packages=['libmodernize', 'libmodernize.fixes'],
         description='A hack on top of 2to3 for modernizing code for '
