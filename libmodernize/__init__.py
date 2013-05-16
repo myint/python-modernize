@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import unicode_literals
 
 from lib2to3.fixer_util import FromImport, Newline, find_root
 from lib2to3.pytree import Leaf, Node

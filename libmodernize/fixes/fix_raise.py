@@ -19,6 +19,8 @@ CAVEATS:
 """
 # Author: Collin Winter, Armin Ronacher
 
+from __future__ import unicode_literals
+
 # Local imports
 from lib2to3 import pytree, fixer_base
 from lib2to3.pgen2 import token

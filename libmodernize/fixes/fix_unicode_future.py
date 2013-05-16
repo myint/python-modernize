@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from lib2to3.fixes import fix_unicode
 from libmodernize import add_future
 
