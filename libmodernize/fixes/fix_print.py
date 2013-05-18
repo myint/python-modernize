@@ -92,12 +92,6 @@ class FixPrint(fixer_base.BaseFix):
         l_nodes.append(n_argument)
 
     def finish_tree(self, tree, filename):
-        """Add future print import.
-
-        From:
-            https://github.com/facebook/tornado
-
-        """
         if not self.found_print:
             return
 
@@ -106,30 +100,53 @@ class FixPrint(fixer_base.BaseFix):
                 # already imported
                 return
 
-        if not isinstance(tree, pytree.Node):
-            # Empty files (usually __init__.py) show up as a single Leaf
-            # instead of a Node, so leave them alone
-            return
-        first_stmt = tree.children[0]
-        if is_docstring(first_stmt):
-            # Skip a line and add the import after the docstring
-            tree.insert_child(1, Newline())
-            pos = 2
-        elif first_stmt.prefix:
-            # No docstring, but an initial comment (perhaps a #! line).
-            # Transfer the initial comment to a new blank line.
-            newline = Newline()
-            newline.prefix = first_stmt.prefix
-            first_stmt.prefix = ''
-            tree.insert_child(0, newline)
-            pos = 1
-        else:
-            # No comments or docstring, just insert at the start
-            pos = 0
-        tree.insert_child(
-            pos,
-            FromImport('__future__', [Name('print_function', prefix=' ')]))
-        tree.insert_child(pos + 1, Newline())  # terminates the import stmt
+        add_future_import('print_function', tree)
+
+
+def add_future_import(name, tree):
+    """Add future import.
+
+    From: https://github.com/facebook/tornado
+
+    Copyright 2009 Facebook
+
+    Licensed under the Apache License, Version 2.0 (the "License"); you may
+    not use this file except in compliance with the License. You may obtain
+    a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+    License for the specific language governing permissions and limitations
+    under the License.
+
+    """
+    if not isinstance(tree, pytree.Node):
+        # Empty files (usually __init__.py) show up as a single Leaf
+        # instead of a Node, so leave them alone
+        return
+    first_stmt = tree.children[0]
+    if is_docstring(first_stmt):
+        # Skip a line and add the import after the docstring
+        tree.insert_child(1, Newline())
+        pos = 2
+    elif first_stmt.prefix:
+        # No docstring, but an initial comment (perhaps a #! line).
+        # Transfer the initial comment to a new blank line.
+        newline = Newline()
+        newline.prefix = first_stmt.prefix
+        first_stmt.prefix = ''
+        tree.insert_child(0, newline)
+        pos = 1
+    else:
+        # No comments or docstring, just insert at the start
+        pos = 0
+    tree.insert_child(
+        pos,
+        FromImport('__future__', [Name('print_function', prefix=' ')]))
+    tree.insert_child(pos + 1, Newline())  # terminates the import stmt
 
 
 # copied from fix_tuple_params.py
