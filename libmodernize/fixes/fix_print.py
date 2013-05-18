@@ -37,13 +37,6 @@ class FixPrint(fixer_base.BaseFix):
     def start_tree(self, tree, filename):
         self.found_print = False
 
-    def new_future_import(self, old):
-        new = FromImport('__future__',
-                         [Name('print_function', prefix=' ')])
-        if old is not None:
-            new.prefix = old.prefix
-        return new
-
     def transform(self, node, results):
         assert results
 
@@ -133,7 +126,9 @@ class FixPrint(fixer_base.BaseFix):
         else:
             # No comments or docstring, just insert at the start
             pos = 0
-        tree.insert_child(pos, self.new_future_import(None))
+        tree.insert_child(
+            pos,
+            FromImport('__future__', [Name('print_function', prefix=' ')]))
         tree.insert_child(pos + 1, Newline())  # terminates the import stmt
 
 
