@@ -145,7 +145,7 @@ def add_future_import(name, tree):
         pos = 0
     tree.insert_child(
         pos,
-        FromImport('__future__', [Name('print_function', prefix=' ')]))
+        FromImport('__future__', [Name(name, prefix=' ')]))
     tree.insert_child(pos + 1, Newline())  # terminates the import stmt
 
 
