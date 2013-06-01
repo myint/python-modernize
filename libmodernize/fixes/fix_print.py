@@ -22,7 +22,7 @@ from lib2to3.fixer_util import Name, Call, Comma, FromImport, Newline, String
 from libmodernize import check_future_import
 
 parend_expr = patcomp.compile_pattern(
-    """atom< '(' [atom|STRING|NAME] ')' >"""
+    """atom< '(' [arith_expr|atom|power|term|STRING|NAME] ')' >"""
 )
 
 

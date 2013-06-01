@@ -20,7 +20,7 @@ Test a minimal example.
     from __future__ import print_function
     print('blah', 'blah')
     x = {'abc': 123}
-    print((x.has_key()))
+    print(x.has_key())
 
 Test doctest. Ignore trailing whitespace caused by python-modernize.
 
