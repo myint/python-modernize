@@ -1,4 +1,4 @@
-"""Fixer for 'raise E, V, T'
+"""Fixer for 'raise E, V, T'.
 
 raise         -> raise
 raise E       -> raise E
@@ -16,6 +16,7 @@ CAVEATS:
    but since we can't detect instance-hood by syntax alone and since
    any client code would have to be changed as well, we don't automate
    this.
+
 """
 # Author: Collin Winter, Armin Ronacher
 
