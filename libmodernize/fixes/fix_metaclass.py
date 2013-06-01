@@ -39,7 +39,7 @@ from lib2to3.fixer_util import Name, syms, Node, Leaf, touch_import, Call, \
 def has_metaclass(parent):
     """we have to check the cls_node without changing it.
 
-    There are two possiblities:
+    There are two possibilities:
           1)  clsdef => suite => simple_stmt => expr_stmt => Leaf('__meta')
           2)  clsdef => simple_stmt => expr_stmt => Leaf('__meta')
 
