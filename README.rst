@@ -6,8 +6,8 @@
       |_|_|_\___/\__,_\___|_| |_||_|_/__\___|
 
 .. image:: https://travis-ci.org/myint/python-modernize.png?branch=master
-   :target: https://travis-ci.org/myint/python-modernize
-   :alt: Build status
+    :target: https://travis-ci.org/myint/python-modernize
+    :alt: Build status
 
 python-modernize is a very thin wrapper around lib2to3 to utilize it
 to make Python 2 code more modern with the intention of eventually
