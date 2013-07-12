@@ -9,10 +9,9 @@ from libmodernize import add_future_import
 
 class FixAbsoluteImportFuture(fix_import.FixImport):
 
-    def start_tree(self, tree, name):
-        super(FixAbsoluteImportFuture, self).start_tree(tree, name)
-
     def finish_tree(self, tree, name):
+        super(FixAbsoluteImportFuture, self).finish_tree(tree, name)
+
         for node in tree.children:
             if not (node.type == python_symbols.simple_stmt and node.children):
                 continue
