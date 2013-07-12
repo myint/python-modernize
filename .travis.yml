@@ -12,3 +12,4 @@ install:
 
 script:
     - cram --indent=4 test.cram
+    - python-modernize libmodernize

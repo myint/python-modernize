@@ -3,6 +3,7 @@ files that contain imports."""
 
 from lib2to3.fixes import fix_import
 from lib2to3.pygram import python_symbols
+from lib2to3.pgen2 import token
 
 from libmodernize import add_future_import, check_future_import
 
@@ -23,6 +24,7 @@ class FixAbsoluteImportFuture(fix_import.FixImport):
             if (
                 node.type == python_symbols.import_name or
                 (node.type == python_symbols.import_from and
+                 node.children[1].type == token.NAME and
                  node.children[1].value != '__future__')
             ):
                 add_future_import(tree, 'absolute_import')
