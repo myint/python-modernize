@@ -107,3 +107,21 @@ Test with no print.
     $ cat example.py
     x = {'abc': 123}
     'abc' in x
+
+Test that future import gets added to any files with imports.
+
+    $ cat > example.py <<EOF
+    > import os
+    > EOF
+
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: Refactored example.py
+    RefactoringTool: Files that were modified:
+    RefactoringTool: example.py
+
+    $ cat example.py
+    from __future__ import absolute_import
+    import os
