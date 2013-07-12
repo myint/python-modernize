@@ -1,5 +1,5 @@
 """Like lib2to3.fixes.fix_import, but add the absolute_import future to all
-files."""
+files that contain imports."""
 
 from lib2to3.fixes import fix_import
 from lib2to3.pygram import python_symbols
