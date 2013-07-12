@@ -104,7 +104,7 @@ def main(args=None):
         unwanted_fixes.add('libmodernize.fixes.fix_absolute_import_future')
     else:
         # Use fix_absolute_import_future instead.
-        unwanted_fixes.add('libmodernize.fixes.fix_import')
+        unwanted_fixes.add('lib2to3.fixes.fix_import')
 
     if not options.six:
         unwanted_fixes.update(six_fix_names)
