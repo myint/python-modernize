@@ -34,6 +34,17 @@ Unicode Literal Control:
 
 Installation
 ------------
+
 From pip::
 
     $ pip install --upgrade git+https://github.com/myint/python-modernize
+
+
+Tests
+-----
+
+The tests use cram_::
+
+    $ ./test.cram
+
+.. _cram: https://pypi.python.org/pypi/cram
