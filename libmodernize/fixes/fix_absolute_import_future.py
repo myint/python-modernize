@@ -30,4 +30,4 @@ class FixAbsoluteImportFuture(fix_import.FixImport):
                  node.children[1].value != '__future__')
             ):
                 add_future_import(tree, 'absolute_import')
-                break
+                return
