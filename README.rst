@@ -45,6 +45,6 @@ Tests
 
 The tests use cram_::
 
-    $ ./test.cram
+    $ cram --indent=4 ./test.cram
 
 .. _cram: https://pypi.python.org/pypi/cram
