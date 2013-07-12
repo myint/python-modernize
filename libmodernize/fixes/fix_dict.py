@@ -1,5 +1,3 @@
-"""Fixer for it.next() -> advance_iterator(it)"""
-
 from __future__ import absolute_import
 from __future__ import unicode_literals
 
@@ -7,13 +5,13 @@ from lib2to3 import fixer_base
 from lib2to3.fixer_util import touch_import, Name, Call
 
 
-bind_warning = 'Calls to builtin next() possibly shadowed by global binding'
-
-
 class FixDict(fixer_base.BaseFix):
     BM_compatible = True
     PATTERN = """
-    power< base=any+ trailer< '.' method=('iterkeys'|'iteritems'|'itervalues') > trailer< '(' ')' > >
+    power< base=any+
+        trailer< '.' method=('iterkeys'|'iteritems'|'itervalues') >
+        trailer< '(' ')' >
+    >
     """
 
     order = 'pre'  # Pre-order tree traversal
