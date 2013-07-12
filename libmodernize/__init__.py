@@ -44,29 +44,6 @@ def check_future_import(node):
         assert 0, 'strange import'
 
 
-def add_future(node, symbol):
-
-    root = find_root(node)
-
-    for idx, node in enumerate(root.children):
-        if (node.type == syms.simple_stmt and
-                len(node.children) > 0 and
-                node.children[0].type == token.STRING):
-            # skip over docstring
-            continue
-        names = check_future_import(node)
-        if not names:
-            # not a future statement; need to insert before this
-            break
-        if symbol in names:
-            # already imported
-            return
-
-    import_ = FromImport('__future__', [Leaf(token.NAME, symbol, prefix=' ')])
-    children = [import_, Newline()]
-    root.insert_child(idx, Node(syms.simple_stmt, children))
-
-
 def add_future_import(tree, name):
     """Add future import.
 
