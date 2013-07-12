@@ -1,6 +1,8 @@
 """Like lib2to3.fixes.fix_import, but add the absolute_import future to all
 files that contain imports."""
 
+from __future__ import absolute_import
+
 from lib2to3.fixes import fix_import
 from lib2to3.pygram import python_symbols
 from lib2to3.pgen2 import token

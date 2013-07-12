@@ -16,6 +16,8 @@ This fixer also tries very hard to keep original indenting and spacing
 in all those corner cases.
 
 """
+
+from __future__ import absolute_import
 # This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py under the
 # copyright of the Python Software Foundation, licensed under the Python
 # Software Foundation License 2.

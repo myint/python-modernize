@@ -13,6 +13,8 @@ No changes are applied if print_function is imported from __future__
 
 """
 
+from __future__ import absolute_import
+
 from __future__ import unicode_literals
 
 from lib2to3 import patcomp, pytree, fixer_base

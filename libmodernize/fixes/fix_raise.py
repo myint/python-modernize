@@ -18,6 +18,8 @@ CAVEATS:
    this.
 
 """
+
+from __future__ import absolute_import
 # Author: Collin Winter, Armin Ronacher
 
 from __future__ import unicode_literals

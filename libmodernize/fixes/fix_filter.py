@@ -1,6 +1,8 @@
 # Copyright 2008 Armin Ronacher.
 # Licensed to PSF under a Contributor Agreement.
 
+
+from __future__ import absolute_import
 from __future__ import unicode_literals
 
 from lib2to3 import fixer_base

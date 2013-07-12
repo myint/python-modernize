@@ -1,5 +1,7 @@
 """Fixer for it.next() -> advance_iterator(it)"""
 
+from __future__ import absolute_import
+
 from __future__ import unicode_literals
 
 # Local imports
