@@ -4,7 +4,7 @@ files that contain imports."""
 from lib2to3.fixes import fix_import
 from lib2to3.pygram import python_symbols
 
-from libmodernize import add_future_import
+from libmodernize import add_future_import, check_future_import
 
 
 class FixAbsoluteImportFuture(fix_import.FixImport):
@@ -13,6 +13,9 @@ class FixAbsoluteImportFuture(fix_import.FixImport):
         super(FixAbsoluteImportFuture, self).finish_tree(tree, name)
 
         for node in tree.children:
+            if 'absolute_import' in check_future_import(node):
+                return
+
             if not (node.type == python_symbols.simple_stmt and node.children):
                 continue
 
