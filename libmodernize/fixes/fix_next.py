@@ -1,10 +1,8 @@
 """Fixer for it.next() -> advance_iterator(it)"""
 
 from __future__ import absolute_import
-
 from __future__ import unicode_literals
 
-# Local imports
 from lib2to3 import fixer_base
 from lib2to3.fixer_util import touch_import, Name, Call
 

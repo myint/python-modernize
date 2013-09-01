@@ -19,12 +19,11 @@ CAVEATS:
 
 """
 
-from __future__ import absolute_import
 # Author: Collin Winter, Armin Ronacher
 
+from __future__ import absolute_import
 from __future__ import unicode_literals
 
-# Local imports
 from lib2to3 import pytree, fixer_base
 from lib2to3.pgen2 import token
 from lib2to3.fixer_util import Name, Call, is_tuple

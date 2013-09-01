@@ -17,7 +17,6 @@ in all those corner cases.
 
 """
 
-from __future__ import absolute_import
 # This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py under the
 # copyright of the Python Software Foundation, licensed under the Python
 # Software Foundation License 2.
@@ -31,7 +30,8 @@ from __future__ import absolute_import
 
 # Author: Jack Diederich, Daniel Neuhäuser
 
-# Local imports
+from __future__ import absolute_import
+
 from lib2to3 import fixer_base
 from lib2to3.pygram import token
 from lib2to3.fixer_util import Name, syms, Node, Leaf, touch_import, Call, \
