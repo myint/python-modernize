@@ -1,4 +1,18 @@
 # coding: utf-8
+
+# This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py under the
+# copyright of the Python Software Foundation, licensed under the Python
+# Software Foundation License 2.
+#
+# Copyright notice:
+#
+#     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
+#     2011, 2012, 2013 Python Software Foundation. All rights reserved.
+#
+# Full license text: http://docs.python.org/3.4/license.html
+
+# Author: Jack Diederich, Daniel Neuhäuser
+
 """Fixer for __metaclass__ = X -> (six.with_metaclass(X)) methods.
 
 The various forms of classef (inherits nothing, inherits once, inherints
@@ -16,19 +30,6 @@ This fixer also tries very hard to keep original indenting and spacing
 in all those corner cases.
 
 """
-
-# This is a derived work of Lib/lib2to3/fixes/fix_metaclass.py under the
-# copyright of the Python Software Foundation, licensed under the Python
-# Software Foundation License 2.
-#
-# Copyright notice:
-#
-#     Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010,
-#     2011, 2012, 2013 Python Software Foundation. All rights reserved.
-#
-# Full license text: http://docs.python.org/3.4/license.html
-
-# Author: Jack Diederich, Daniel Neuhäuser
 
 from __future__ import absolute_import
 
@@ -178,7 +179,7 @@ class FixMetaclass(fixer_base.BaseFix):
 
         # find metaclasses, keep the last one
         last_metaclass = None
-        for suite, i, stmt in find_metas(node):
+        for suite, _, stmt in find_metas(node):
             last_metaclass = stmt
             stmt.remove()
 
