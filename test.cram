@@ -148,8 +148,7 @@ Test that future import gets added to any files with imports.
 Fix unicode.
 
     $ cat > example.py <<EOF
-    > import os
-    > os.path.realpath(u'/dev')
+    > path = u'/dev'
     > EOF
 
     $ $TESTDIR/python-modernize --future-unicode --write --no-diffs example.py
@@ -162,6 +161,4 @@ Fix unicode.
 
     $ cat example.py
     from __future__ import unicode_literals
-    from __future__ import absolute_import
-    import os
-    os.path.realpath('/dev')
+    path = '/dev'
