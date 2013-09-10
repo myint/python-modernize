@@ -68,6 +68,7 @@ def add_future_import(tree, name):
         # Empty files (usually __init__.py) show up as a single Leaf
         # instead of a Node, so leave them alone
         return
+
     first_stmt = tree.children[0]
     if is_docstring(first_stmt):
         # Skip a line and add the import after the docstring
