@@ -125,3 +125,20 @@ Test that future import gets added to any files with imports.
     $ cat example.py
     from __future__ import absolute_import
     import os
+
+
+Test that future import gets added to any files with imports.
+
+    $ cat > example.py <<EOF
+    > resource_type == types.DictType
+    > EOF
+
+   RefactoringTool: Skipping implicit fixer: idioms
+   RefactoringTool: Skipping implicit fixer: set_literal
+   RefactoringTool: Skipping implicit fixer: ws_comma
+   RefactoringTool: Refactored foo.py
+   RefactoringTool: Files that need to be modified:
+   RefactoringTool: foo.py
+
+   $ cat example.py
+   resource_type == dict
