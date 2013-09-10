@@ -22,6 +22,8 @@ class FixAbsoluteImportFuture(fix_import.FixImport):
             if not (node.type == python_symbols.simple_stmt and node.children):
                 continue
 
+            # Only add future import if there exists imports in the file.
+            # Otherwise we end up with a lot of useless clutter.
             node = node.children[0]
             if (
                 node.type == python_symbols.import_name or
