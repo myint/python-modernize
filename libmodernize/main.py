@@ -9,7 +9,7 @@ import optparse
 from lib2to3.main import warn, StdoutRefactoringTool
 from lib2to3 import refactor
 
-from libmodernize.fixes import lib2to3_fix_names, six_fix_names
+from libmodernize.fixes import lib2to3_fix_names
 from libmodernize import __version__
 
 
@@ -46,11 +46,8 @@ def main(args=None):
                       help="Leave u'' and b'' prefixes unchanged (requires "
                            'Python 3.3 and higher).')
     parser.add_option('--future-unicode', action='store_true', default=False,
-                      help='Use unicode_strings future_feature instead of the '
-                           'six.u function '
+                      help='Use unicode_strings __future__ feature '
                       '(only useful for Python 2.6+).')
-    parser.add_option('--six', action='store_true', default=False,
-                      help='Include fixes that depend on the six package')
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -97,8 +94,6 @@ def main(args=None):
         unwanted_fixes.add('libmodernize.fixes.fix_unicode_future')
     elif options.future_unicode:
         unwanted_fixes.add('libmodernize.fixes.fix_unicode')
-    else:
-        unwanted_fixes.add('libmodernize.fixes.fix_unicode_future')
 
     if options.doctests_only:
         unwanted_fixes.add('libmodernize.fixes.fix_print')
@@ -107,8 +102,6 @@ def main(args=None):
         # Use fix_absolute_import_future instead.
         unwanted_fixes.add('lib2to3.fixes.fix_import')
 
-    if not options.six:
-        unwanted_fixes.update(six_fix_names)
     explicit = set()
     if options.fix:
         all_present = False

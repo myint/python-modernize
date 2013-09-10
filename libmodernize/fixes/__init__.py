@@ -26,16 +26,3 @@ lib2to3_fix_names = set([
     'lib2to3.fixes.fix_xrange',
     'lib2to3.fixes.fix_xreadlines'
 ])
-
-# fixes that involve using six
-six_fix_names = set([
-    'libmodernize.fixes.fix_dict',
-    'libmodernize.fixes.fix_filter',
-    'libmodernize.fixes.fix_map',
-    'libmodernize.fixes.fix_metaclass'
-    'libmodernize.fixes.fix_next',
-    'libmodernize.fixes.fix_range',
-    'libmodernize.fixes.fix_types'
-    'libmodernize.fixes.fix_unicode',
-    'libmodernize.fixes.fix_zip',
-])
