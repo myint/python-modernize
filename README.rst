@@ -35,6 +35,22 @@ From pip::
     $ pip install --upgrade modernize3k
 
 
+Usage
+-----
+
+Preview changes on a file or directory::
+
+    $ python-modernize example.py
+
+Write the changes::
+
+    $ python-modernize --write example.py
+
+Modify doctests::
+
+    $ python-modernize --write --doctests-only example.py
+
+
 Tests
 -----
 
