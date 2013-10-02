@@ -14,11 +14,9 @@ def version():
 
 with open('README.rst') as readme:
     core.setup(
-        name='modernize',
-        author='Armin Ronacher',
-        author_email='armin.ronacher@active-4.com',
+        name='modernize3k',
         version='0.3',
-        url='http://github.com/mitsuhiko/python-modernize',
+        url='http://github.com/myint/python-modernize',
         packages=['libmodernize', 'libmodernize.fixes'],
         description='A hack on top of 2to3 for modernizing code for '
                     'hybrid codebases.',
