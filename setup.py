@@ -15,7 +15,7 @@ def version():
 with open('README.rst') as readme:
     core.setup(
         name='modernize3k',
-        version='0.3',
+        version=version(),
         url='http://github.com/myint/python-modernize',
         packages=['libmodernize', 'libmodernize.fixes'],
         description='A hack on top of 2to3 for modernizing code for '
