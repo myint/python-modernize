@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 lib2to3_fix_names = set([
     'lib2to3.fixes.fix_apply',
+    'lib2to3.fixes.fix_dict',
     'lib2to3.fixes.fix_except',
     'lib2to3.fixes.fix_exec',
     'lib2to3.fixes.fix_execfile',
