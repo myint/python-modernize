@@ -76,8 +76,7 @@ def main(args=None):
     if '-' in args:
         refactor_stdin = True
         if options.write:
-            print("Can't write to stdin.", file=sys.stderr)
-            return 2
+            parser.error("Can't write to stdin")
 
     if options.print_function:
         flags['print_function'] = True
@@ -124,9 +123,7 @@ def main(args=None):
                             options.processes)
             except refactor.MultiprocessingUnsupported:
                 assert options.processes > 1
-                print("Sorry, -j isn't "
-                      'supported on this platform.', file=sys.stderr)
-                return 1
+                parser.error("Sorry, -j isn't supported on this platform")
         rt.summarize()
 
     # Return error status (0 if rt.errors is zero)
