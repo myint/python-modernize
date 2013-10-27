@@ -54,27 +54,31 @@ def main(args=None):
     refactor_stdin = False
     flags = {}
     options, args = parser.parse_args(args)
+
+    if not args:
+        parser.error('At least one file or directory argument required; '
+                     'use --help to show usage')
+
     if not options.write and options.no_diffs:
         warn(
             "not writing files and not printing diffs; that's not very useful")
+
     if not options.write and options.nobackups:
         parser.error("Can't use -n without -w")
+
     if options.list_fixes:
         print('Available transformations for the -f/--fix option:')
         for fixname in sorted(avail_fixes):
             print(fixname)
         if not args:
             return 0
-    if not args:
-        print('At least one file or directory argument required.',
-              file=sys.stderr)
-        print('Use --help to show usage.', file=sys.stderr)
-        return 2
+
     if '-' in args:
         refactor_stdin = True
         if options.write:
             print("Can't write to stdin.", file=sys.stderr)
             return 2
+
     if options.print_function:
         flags['print_function'] = True
 
