@@ -22,28 +22,28 @@ def main(args=None):
     # Set up option parser
     parser = optparse.OptionParser(usage='modernize [options] file|dir ...',
                                    version='%prog {0}'.format(__version__))
-    parser.add_option('-d', '--doctests',
-                      action='store_true', help='Fix up doctests')
+    parser.add_option('-d', '--doctests', action='store_true',
+                      help='fix up doctests')
     parser.add_option('-f', '--fix', action='append', default=[],
-                      help='Each FIX specifies a transformation; default: all')
+                      help='each FIX specifies a transformation; default: all')
     parser.add_option('-j', '--processes', action='store', default=1,
                       type='int', help='Run 2to3 concurrently')
     parser.add_option('-x', '--nofix', action='append', default=[],
-                      help='Prevent a fixer from being run.')
+                      help='prevent a fixer from being run.')
     parser.add_option('-l', '--list-fixes', action='store_true',
-                      help='List available transformations')
+                      help='list available transformations')
     parser.add_option('-p', '--print-function', action='store_true',
-                      help='Modify the grammar so that print() is a function')
+                      help='modify the grammar so that print() is a function')
     parser.add_option('-v', '--verbose', action='store_true',
-                      help='More verbose logging')
+                      help='more verbose logging')
     parser.add_option('--no-diffs', action='store_true',
-                      help="Don't show diffs of the refactoring")
+                      help="don't show diffs of the refactoring")
     parser.add_option('-w', '--write', action='store_true',
-                      help='Write back modified files')
+                      help='write back modified files')
     parser.add_option('-n', '--nobackups', action='store_true', default=False,
-                      help="Don't write backups for modified files.")
+                      help="don't write backups for modified files.")
     parser.add_option('--future-unicode', action='store_true', default=False,
-                      help='Use unicode_strings __future__ feature '
+                      help='use unicode_strings __future__ feature '
                            '(only useful for Python 2.6+).')
 
     fixer_pkg = 'libmodernize.fixes'
