@@ -32,7 +32,7 @@ Test doctest. Ignore trailing whitespace caused by python-modernize.
     > """
     > EOF
 
-    $ $TESTDIR/python-modernize --write --no-diffs --doctests-only example.py
+    $ $TESTDIR/python-modernize --write --no-diffs --doctests example.py
     RefactoringTool: Skipping implicit fixer: idioms
     RefactoringTool: Skipping implicit fixer: set_literal
     RefactoringTool: Skipping implicit fixer: ws_comma

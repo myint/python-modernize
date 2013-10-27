@@ -22,8 +22,8 @@ def main(args=None):
     # Set up option parser
     parser = optparse.OptionParser(usage='modernize [options] file|dir ...',
                                    version='%prog {0}'.format(__version__))
-    parser.add_option('-d', '--doctests-only', '--doctests_only',
-                      action='store_true', help='Fix up doctests only')
+    parser.add_option('-d', '--doctests',
+                      action='store_true', help='Fix up doctests')
     parser.add_option('-f', '--fix', action='append', default=[],
                       help='Each FIX specifies a transformation; default: all')
     parser.add_option('-j', '--processes', action='store', default=1,
@@ -44,7 +44,7 @@ def main(args=None):
                       help="Don't write backups for modified files.")
     parser.add_option('--future-unicode', action='store_true', default=False,
                       help='Use unicode_strings __future__ feature '
-                      '(only useful for Python 2.6+).')
+                           '(only useful for Python 2.6+).')
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -88,7 +88,7 @@ def main(args=None):
     if not options.future_unicode:
         unwanted_fixes.add('libmodernize.fixes.fix_unicode_future')
 
-    if options.doctests_only:
+    if options.doctests:
         unwanted_fixes.add('libmodernize.fixes.fix_print')
         unwanted_fixes.add('libmodernize.fixes.fix_absolute_import_future')
     else:
@@ -116,7 +116,7 @@ def main(args=None):
             rt.refactor_stdin()
         else:
             try:
-                rt.refactor(args, options.write, options.doctests_only,
+                rt.refactor(args, options.write, options.doctests,
                             options.processes)
             except refactor.MultiprocessingUnsupported:
                 assert options.processes > 1
