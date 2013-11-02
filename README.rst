@@ -48,7 +48,7 @@ Write the changes::
 
 Modify doctests::
 
-    $ python-modernize --write --doctests-only example.py
+    $ python-modernize --write --doctests example.py
 
 
 Tests
