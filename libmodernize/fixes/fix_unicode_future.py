@@ -9,6 +9,7 @@ from libmodernize import add_future_import, check_future_import
 class FixUnicodeFuture(fix_unicode.FixUnicode):
 
     def start_tree(self, tree, filename):
+        super(FixUnicodeFuture, self).start_tree(tree, filename)
         self.found_unicode = False
 
     def transform(self, node, results):
