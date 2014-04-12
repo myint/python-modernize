@@ -5,7 +5,7 @@
       | '  \/ _ \/ _` / -_) '_| ' \| |_ / -_)
       |_|_|_\___/\__,_\___|_| |_||_|_/__\___|
 
-.. image:: https://travis-ci.org/myint/python-modernize.png?branch=master
+.. image:: https://travis-ci.org/myint/python-modernize.svg?branch=master
     :target: https://travis-ci.org/myint/python-modernize
     :alt: Build status
 
