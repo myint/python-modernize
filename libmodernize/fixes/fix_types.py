@@ -20,6 +20,7 @@ There should be another fixer that handles at least the following constants:
 """
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from lib2to3 import fixer_base
 from lib2to3.fixer_util import Name

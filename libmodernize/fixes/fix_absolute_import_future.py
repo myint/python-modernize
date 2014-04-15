@@ -2,6 +2,7 @@
 files that contain imports."""
 
 from __future__ import absolute_import
+from __future__ import unicode_literals
 
 from lib2to3.fixes import fix_import
 from lib2to3.pygram import python_symbols

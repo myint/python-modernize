@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 
+
 lib2to3_fix_names = set([
     'lib2to3.fixes.fix_apply',
     'lib2to3.fixes.fix_dict',

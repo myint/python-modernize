@@ -14,7 +14,6 @@ No changes are applied if print_function is imported from __future__
 """
 
 from __future__ import absolute_import
-
 from __future__ import unicode_literals
 
 from lib2to3 import patcomp, pytree, fixer_base
@@ -22,6 +21,7 @@ from lib2to3.pgen2 import token
 from lib2to3.fixer_util import Name, Call, Comma, String
 
 from libmodernize import add_future_import, check_future_import
+
 
 parend_expr = patcomp.compile_pattern(
     """atom< '(' [arith_expr|atom|power|term|STRING|NAME] ')' >"""
