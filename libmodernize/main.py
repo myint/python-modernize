@@ -54,10 +54,6 @@ def main(args=None):
     flags = {}
     options, args = parser.parse_args(args)
 
-    if not args:
-        parser.error('At least one file or directory argument required; '
-                     'use --help to show usage')
-
     if not options.write and options.no_diffs:
         warn(
             "not writing files and not printing diffs; that's not very useful")
