@@ -33,7 +33,7 @@ def main(args=None):
                       help='list available transformations')
     parser.add_option('-p', '--print-function', action='store_true',
                       help='modify the grammar so that print() is a function')
-    parser.add_option('-v', '--verbose', action='store_true',
+    parser.add_option('-v', '--verbose', action='count', default=0,
                       help='more verbose logging')
     parser.add_option('--no-diffs', action='store_true',
                       help="don't show diffs of the refactoring")
@@ -76,8 +76,13 @@ def main(args=None):
     if options.print_function:
         flags['print_function'] = True
 
-    # Set up logging handler
-    level = logging.DEBUG if options.verbose else logging.INFO
+    if options.verbose == 0:
+        level = logging.ERROR
+    elif options.verbose == 1:
+        level = logging.INFO
+    else:
+        level = logging.DEBUG
+
     logging.basicConfig(format='%(name)s: %(message)s', level=level)
 
     # Initialize the refactoring tool

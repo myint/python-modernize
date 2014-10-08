@@ -9,12 +9,6 @@ Test a minimal example.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     from __future__ import print_function
@@ -33,12 +27,6 @@ Test doctest. Ignore trailing whitespace caused by python-modernize.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs --doctests example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba'
     """
@@ -56,12 +44,6 @@ Test print with shebang.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     #!/usr/bin/env python
@@ -79,10 +61,6 @@ Test existing future print import.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: No files need to be modified.
 
     $ cat example.py
     #!/usr/bin/env python
@@ -97,12 +75,6 @@ Test with no print.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     x = {'abc': 123}
@@ -115,12 +87,6 @@ Test that future import gets added to any files with imports.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     from __future__ import absolute_import
@@ -133,12 +99,6 @@ Test that future import gets added to any files with imports.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     resource_type == dict
@@ -150,12 +110,6 @@ Fix unicode.
     > EOF
 
     $ $TESTDIR/python-modernize --future-unicode --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     from __future__ import unicode_literals
@@ -169,12 +123,6 @@ Test additional fixers.
     > EOF
 
     $ $TESTDIR/python-modernize --write --no-diffs example.py
-    RefactoringTool: Skipping implicit fixer: idioms
-    RefactoringTool: Skipping implicit fixer: set_literal
-    RefactoringTool: Skipping implicit fixer: ws_comma
-    RefactoringTool: Refactored example.py
-    RefactoringTool: Files that were modified:
-    RefactoringTool: example.py
 
     $ cat example.py
     
