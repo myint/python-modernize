@@ -66,8 +66,9 @@ def main():
         print('Available transformations for the -f/--fix option:')
         for fixname in sorted(avail_fixes):
             print(fixname)
-        if not args.files:
-            return 0
+
+    if not args.files:
+        return 0
 
     if '-' in args.files:
         refactor_stdin = True
