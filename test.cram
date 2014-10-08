@@ -126,7 +126,6 @@ Test that future import gets added to any files with imports.
     from __future__ import absolute_import
     import os
 
-
 Test that future import gets added to any files with imports.
 
     $ cat > example.py <<EOF
@@ -143,7 +142,6 @@ Test that future import gets added to any files with imports.
 
     $ cat example.py
     resource_type == dict
-
 
 Fix unicode.
 
@@ -162,3 +160,22 @@ Fix unicode.
     $ cat example.py
     from __future__ import unicode_literals
     path = '/dev'
+
+Test additional fixers.
+
+    $ cat > example.py <<EOF
+    > from itertools import izip
+    > izip([1, 2], [3, 4])
+    > EOF
+
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
+    RefactoringTool: Skipping implicit fixer: idioms
+    RefactoringTool: Skipping implicit fixer: set_literal
+    RefactoringTool: Skipping implicit fixer: ws_comma
+    RefactoringTool: Refactored example.py
+    RefactoringTool: Files that were modified:
+    RefactoringTool: example.py
+
+    $ cat example.py
+    
+    zip([1, 2], [3, 4])

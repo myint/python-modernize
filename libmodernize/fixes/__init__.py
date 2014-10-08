@@ -11,6 +11,8 @@ lib2to3_fix_names = set([
     'lib2to3.fixes.fix_funcattrs',
     'lib2to3.fixes.fix_has_key',
     'lib2to3.fixes.fix_idioms',
+    'lib2to3.fixes.fix_itertools',
+    'lib2to3.fixes.fix_itertools_imports',
     'lib2to3.fixes.fix_import',
     'lib2to3.fixes.fix_methodattrs',
     'lib2to3.fixes.fix_ne',
