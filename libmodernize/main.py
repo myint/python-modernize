@@ -13,12 +13,7 @@ from libmodernize import __version__
 
 
 def main():
-    """Main program.
-
-    Returns a suggested exit status (0, 1, 2).
-
-    """
-    # Set up option parser
+    """Main program."""
     parser = argparse.ArgumentParser(prog='python-modernize')
     parser.add_argument('--version', action='version',
                         version='%(prog)s ' + __version__)
@@ -56,7 +51,6 @@ def main():
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
     avail_fixes.update(lib2to3_fix_names)
 
-    # Parse command line arguments
     refactor_stdin = False
     flags = {}
     args = parser.parse_args()
@@ -94,7 +88,6 @@ def main():
 
     logging.basicConfig(format='%(name)s: %(message)s', level=level)
 
-    # Initialize the refactoring tool
     unwanted_fixes = set(args.nofix)
 
     if not args.future_unicode:
@@ -122,7 +115,6 @@ def main():
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
                                args.nobackups, not args.no_diffs)
 
-    # Refactor all files and directories passed as arguments
     if not rt.errors:
         if refactor_stdin:
             rt.refactor_stdin()
@@ -135,5 +127,4 @@ def main():
                 parser.error("Sorry, -j isn't supported on this platform")
         rt.summarize()
 
-    # Return error status (0 if rt.errors is zero)
     return int(bool(rt.errors))
