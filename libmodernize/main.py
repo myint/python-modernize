@@ -50,7 +50,7 @@ def main():
                         help='use unicode_strings __future__ feature '
                              '(only useful for Python 2.6+)')
     parser.add_argument('files', nargs='*',
-                        help="files to format or '-' for standard in")
+                        help="files to fix or '-' for standard in")
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
