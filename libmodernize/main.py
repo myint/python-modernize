@@ -2,8 +2,8 @@ from __future__ import absolute_import
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import argparse
 import logging
-import optparse
 
 from lib2to3.main import warn, StdoutRefactoringTool
 from lib2to3 import refactor
@@ -12,38 +12,45 @@ from libmodernize.fixes import lib2to3_fix_names
 from libmodernize import __version__
 
 
-def main(args=None):
+def main():
     """Main program.
 
     Returns a suggested exit status (0, 1, 2).
 
     """
     # Set up option parser
-    parser = optparse.OptionParser(usage='modernize [options] file|dir ...',
-                                   version='%prog {0}'.format(__version__))
-    parser.add_option('-d', '--doctests', action='store_true',
-                      help='fix up doctests')
-    parser.add_option('-f', '--fix', action='append', default=[],
-                      help='each FIX specifies a transformation; default: all')
-    parser.add_option('-j', '--processes', action='store', default=1,
-                      type='int', help='Run 2to3 concurrently')
-    parser.add_option('-x', '--nofix', action='append', default=[],
-                      help='prevent a fixer from being run.')
-    parser.add_option('-l', '--list-fixes', action='store_true',
-                      help='list available transformations')
-    parser.add_option('-p', '--print-function', action='store_true',
-                      help='modify the grammar so that print() is a function')
-    parser.add_option('-v', '--verbose', action='count', default=0,
-                      help='more verbose logging')
-    parser.add_option('--no-diffs', action='store_true',
-                      help="don't show diffs of the refactoring")
-    parser.add_option('-w', '--write', action='store_true',
-                      help='write back modified files')
-    parser.add_option('-n', '--nobackups', action='store_true', default=False,
-                      help="don't write backups for modified files.")
-    parser.add_option('--future-unicode', action='store_true', default=False,
-                      help='use unicode_strings __future__ feature '
-                           '(only useful for Python 2.6+).')
+    parser = argparse.ArgumentParser(prog='python-modernize')
+    parser.add_argument('--version', action='version',
+                        version='%(prog)s ' + __version__)
+    parser.add_argument('-d', '--doctests', action='store_true',
+                        help='fix up doctests')
+    parser.add_argument('-f', '--fix', action='append', default=[],
+                        help='each FIX specifies a transformation; '
+                             'default: all')
+    parser.add_argument('-j', '--processes', action='store', default=1,
+                        type=int, help='Run 2to3 concurrently')
+    parser.add_argument('-x', '--nofix', action='append', default=[],
+                        help='prevent a fixer from being run')
+    parser.add_argument('-l', '--list-fixes', action='store_true',
+                        help='list available transformations')
+    parser.add_argument('-p', '--print-function', action='store_true',
+                        help='modify the grammar so that print() is a '
+                             'function')
+    parser.add_argument('-v', '--verbose', action='count', default=0,
+                        help='more verbose logging')
+    parser.add_argument('--no-diffs', action='store_true',
+                        help="don't show diffs of the refactoring")
+    parser.add_argument('-w', '--write', action='store_true',
+                        help='write back modified files')
+    parser.add_argument('-n', '--nobackups',
+                        action='store_true', default=False,
+                        help="don't write backups for modified files.")
+    parser.add_argument('--future-unicode',
+                        action='store_true', default=False,
+                        help='use unicode_strings __future__ feature '
+                             '(only useful for Python 2.6+)')
+    parser.add_argument('files', nargs='*',
+                        help="files to format or '-' for standard in")
 
     fixer_pkg = 'libmodernize.fixes'
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))
@@ -52,33 +59,35 @@ def main(args=None):
     # Parse command line arguments
     refactor_stdin = False
     flags = {}
-    options, args = parser.parse_args(args)
+    args = parser.parse_args()
 
-    if not options.write and options.no_diffs:
+    if not args.write and args.no_diffs:
         warn(
             "not writing files and not printing diffs; that's not very useful")
 
-    if not options.write and options.nobackups:
+    if not args.write and args.nobackups:
         parser.error("Can't use -n without -w")
 
-    if options.list_fixes:
+    if args.list_fixes:
         print('Available transformations for the -f/--fix option:')
         for fixname in sorted(avail_fixes):
             print(fixname)
-        if not args:
+        if not args.files:
             return 0
 
-    if '-' in args:
+    if '-' in args.files:
         refactor_stdin = True
-        if options.write:
+        if len(args.files) > 1:
+            parser.error('Cannot mix stdin and regular files')
+        if args.write:
             parser.error("Can't write to stdin")
 
-    if options.print_function:
+    if args.print_function:
         flags['print_function'] = True
 
-    if options.verbose == 0:
+    if args.verbose == 0:
         level = logging.ERROR
-    elif options.verbose == 1:
+    elif args.verbose == 1:
         level = logging.INFO
     else:
         level = logging.DEBUG
@@ -86,12 +95,12 @@ def main(args=None):
     logging.basicConfig(format='%(name)s: %(message)s', level=level)
 
     # Initialize the refactoring tool
-    unwanted_fixes = set(options.nofix)
+    unwanted_fixes = set(args.nofix)
 
-    if not options.future_unicode:
+    if not args.future_unicode:
         unwanted_fixes.add('libmodernize.fixes.fix_unicode_future')
 
-    if options.doctests:
+    if args.doctests:
         unwanted_fixes.add('libmodernize.fixes.fix_print')
         unwanted_fixes.add('libmodernize.fixes.fix_absolute_import_future')
     else:
@@ -99,9 +108,9 @@ def main(args=None):
         unwanted_fixes.add('lib2to3.fixes.fix_import')
 
     explicit = set()
-    if options.fix:
+    if args.fix:
         all_present = False
-        for fix in options.fix:
+        for fix in args.fix:
             if fix == 'all':
                 all_present = True
             else:
@@ -111,7 +120,7 @@ def main(args=None):
         requested = avail_fixes.union(explicit)
     fixer_names = requested.difference(unwanted_fixes)
     rt = StdoutRefactoringTool(sorted(fixer_names), flags, sorted(explicit),
-                               options.nobackups, not options.no_diffs)
+                               args.nobackups, not args.no_diffs)
 
     # Refactor all files and directories passed as arguments
     if not rt.errors:
@@ -119,10 +128,10 @@ def main(args=None):
             rt.refactor_stdin()
         else:
             try:
-                rt.refactor(args, options.write, options.doctests,
-                            options.processes)
+                rt.refactor(args.files, args.write, args.doctests,
+                            args.processes)
             except refactor.MultiprocessingUnsupported:
-                assert options.processes > 1
+                assert args.processes > 1
                 parser.error("Sorry, -j isn't supported on this platform")
         rt.summarize()
 
