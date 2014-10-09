@@ -55,6 +55,10 @@ def main():
     flags = {}
     args = parser.parse_args()
 
+    if args.processes < 1:
+        import multiprocessing
+        args.processes = multiprocessing.cpu_count()
+
     if not args.write and args.no_diffs:
         warn(
             "not writing files and not printing diffs; that's not very useful")
