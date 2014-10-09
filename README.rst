@@ -46,7 +46,7 @@ Write the changes::
 
     $ python-modernize --write example.py
 
-Modify doctests::
+Modify doctests rather than normal code::
 
     $ python-modernize --write --doctests example.py
 
