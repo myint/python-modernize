@@ -127,3 +127,14 @@ Test additional fixers.
     $ cat example.py
     
     zip([1, 2], [3, 4])
+
+Test existing parenthesized future imports.
+
+    $ cat > example.py <<EOF
+    > from __future__ import (print_function, unicode_literals)
+    > EOF
+
+    $ $TESTDIR/python-modernize --write --no-diffs example.py
+
+    $ cat example.py
+    from __future__ import (print_function, unicode_literals)
