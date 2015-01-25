@@ -8,8 +8,8 @@ import logging
 from lib2to3.main import warn, StdoutRefactoringTool
 from lib2to3 import refactor
 
-from libmodernize.fixes import lib2to3_fix_names
-from libmodernize import __version__
+from .fixes import lib2to3_fix_names
+from . import __version__
 
 
 def main():
