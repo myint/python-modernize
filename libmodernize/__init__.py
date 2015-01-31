@@ -7,7 +7,7 @@ from lib2to3.pygram import python_symbols as syms
 from lib2to3.pgen2 import token
 
 
-__version__ = '0.4'
+__version__ = '0.5'
 
 
 def check_future_import(node):
