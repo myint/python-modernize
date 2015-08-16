@@ -19,7 +19,7 @@ with open('README.rst') as readme:
     core.setup(
         name='modernize3k',
         version=version(),
-        url='http://github.com/myint/python-modernize',
+        url='https://github.com/myint/python-modernize',
         packages=['libmodernize', 'libmodernize.fixes'],
         description='A hack on top of 2to3 for modernizing code for '
                     'hybrid codebases.',
